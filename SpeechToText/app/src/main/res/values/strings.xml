@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">SpeechToText</string>
+    <string name="title_activity_import_file">ImportFileActivity</string>
+    <string name="title_activity_result_convert">ResultConvertActivity</string>
+    <string name="importar_audio">Importar audio</string>
+    <string name="importa_tu_archivo">Importa tu archivo de audio</string>
+    <string name="resultado_audio_procesado">Resultado del audio procesado:\n</string>
 </resources>
