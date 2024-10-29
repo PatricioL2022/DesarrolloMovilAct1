@@ -1,7 +1,8 @@
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
-
+    id("com.google.devtools.ksp")
+    alias(libs.plugins.compose.compiler)
 }
 
 android {
@@ -31,7 +32,7 @@ android {
         }
     }
     compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_17
+        sourceCompatibility = JavaVersion.VERSION_1_8
         targetCompatibility = JavaVersion.VERSION_1_8
     }
     kotlinOptions {
@@ -64,6 +65,9 @@ dependencies {
     implementation(libs.androidx.appcompat)
     implementation(libs.material)
     implementation(libs.androidx.activity)
+    implementation(libs.androidx.navigation.runtime.ktx)
+    implementation(libs.androidx.navigation.compose)
+    implementation(libs.androidx.annotation)
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
@@ -74,8 +78,15 @@ dependencies {
     implementation(libs.grpcokhttp)
     implementation(libs.okhttp3)
     implementation(libs.coroutines)
-
+    implementation(libs.squareup.kotlinx.serialization)
     implementation(libs.retrofit)
     implementation(libs.converterGson)
+    implementation(libs.androidx.room.runtime)
+    annotationProcessor(libs.androidx.room.room.compiler)
+
+    // To use Kotlin Symbol Processing (KSP)
+    ksp(libs.androidx.room.room.compiler)
+    implementation(libs.androidx.room.ktx)
+    implementation(libs.androidx.lifecycle.viewmodel.compose)
 
 }

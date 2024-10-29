@@ -14,6 +14,7 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.activity.viewModels
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
@@ -26,16 +27,22 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.room.Room
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 import okhttp3.MediaType.Companion.toMediaType
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
+import viu.wearables.speechtotext.MainActivity
 import viu.wearables.speechtotext.R
+import viu.wearables.speechtotext.data.HistoryDatabase
 import viu.wearables.speechtotext.presentation.components.BasicButton
 import viu.wearables.speechtotext.presentation.components.BasicImage
 import viu.wearables.speechtotext.presentation.components.BasicTopBar
+import viu.wearables.speechtotext.presentation.list.SpeechToTextViewModel
+import viu.wearables.speechtotext.presentation.models.History
 import viu.wearables.speechtotext.presentation.ui.theme.SpeechToTextTheme
+import viu.wearables.speechtotext.repository.Repository
 import viu.wearables.speechtotext.retrofit.InitializeRetrofit
 import java.io.File
 
@@ -45,7 +52,14 @@ import java.io.File
  */
 
 class ImportFileActivity : ComponentActivity() {
-
+    //private val speechToTextViewModel by viewModels<SpeechToTextViewModel>(Repository(),)
+    private val db by lazy {
+        Room.databaseBuilder(
+            applicationContext,
+            HistoryDatabase::class.java,
+            HistoryDatabase.DATABASE_NAME
+        ).build()
+    }
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
@@ -83,11 +97,12 @@ class ImportFileActivity : ComponentActivity() {
             if (it.moveToFirst()) {
                 val displayName = it.getString(it.getColumnIndex(OpenableColumns.DISPLAY_NAME))
                 Log.d("viu.wearables.speechtotext",uri.path.toString())
-                val resulConvertActivity = Intent(this@ImportFileActivity, ResultConvertActivity::class.java)
-                resulConvertActivity.putExtra("resultadoConvertirAudioTexto", "hola mundo")
-                startActivity(resulConvertActivity)
-                //ImportFileActivity.nombreArchivo = displayName
-                // llamaApi()
+                //val resulConvertActivity = Intent(this@ImportFileActivity, ResultConvertActivity::class.java)
+                //resulConvertActivity.putExtra("resultadoConvertirAudioTexto", "hola mundo")
+                //startActivity(resulConvertActivity)
+
+                ImportFileActivity.nombreArchivo = displayName
+                llamaApi()
                 //val intent : Intent(this,ResulConvertActivity.class)
 
             }
@@ -104,17 +119,26 @@ class ImportFileActivity : ComponentActivity() {
         val multipartBody = MultipartBody.Part.createFormData("elmo","elmo.mp3",requestFile)
         // val repository : Repository()
         // repository.subirAudio(multipartBody)
+       // speechToTextViewModel.speechToText
         GlobalScope.launch {
             val result = InitializeRetrofit.todoApi.subirAudio(multipartBody);
             if (result != null){
-                var resultadoTextoProcesado : String
-                for (resultItem in result)
-                {
-                    resultadoTextoProcesado = resultItem
-                }
+
+                var history:History=History(transcripcion = result.transcript,
+                    nombreAudio = ImportFileActivity.nombreArchivo,
+                    fecha = "29/10/2024", hora = "5:23",
+                    confianza = result.confidence, tiempoProcesamiento = result.seconds,
+                    unidadMedidaTiempoProcesamiento = "segundos")
+                db.dao.upsertHistory(history)
+                var resultadoTextoProcesado = result
+                val resulConvertActivity = Intent(this@ImportFileActivity, ResultConvertActivity::class.java)
+                resulConvertActivity.putExtra("resultadoConvertirAudioTexto", resultadoTextoProcesado.transcript)
+                startActivity(resulConvertActivity)
+
+                Log.d("AYUDA: ", result.toString())
             }
             // Checking the results
-                Log.d("AYUDA: ", result.toString())
+
         }
     }
     @Preview(showBackground = true)
@@ -147,6 +171,13 @@ class ImportFileActivity : ComponentActivity() {
                     Toast.makeText(context, "Pero que ha pasao", Toast.LENGTH_LONG).show()
                 },
                 texto = stringResource(R.string.importar_audio)
+            )
+            BasicButton(
+                onClick = {
+                    val historyActivity = Intent(this@ImportFileActivity, MainActivity::class.java)
+                    startActivity(historyActivity)
+                },
+                texto = stringResource(R.string.historial)
             )
         }
     }

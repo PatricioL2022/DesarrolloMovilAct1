@@ -2,13 +2,14 @@ package viu.wearables.speechtotext.repository
 
 import android.util.Log
 import okhttp3.MultipartBody
+import viu.wearables.speechtotext.presentation.models.SpeechToText
 import viu.wearables.speechtotext.retrofit.Api
 import viu.wearables.speechtotext.retrofit.InitializeRetrofit
 import viu.wearables.speechtotext.utils.Resultado
 import java.io.Serializable
 
 class Repository() {
-    suspend fun subirAudio(body: MultipartBody.Part): Resultado<Serializable> {
+    suspend fun subirAudio(body: MultipartBody.Part): Resultado<SpeechToText> {
 
         val response = try {
             InitializeRetrofit.todoApi.subirAudio(body)

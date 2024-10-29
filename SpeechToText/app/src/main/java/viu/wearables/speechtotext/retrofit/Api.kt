@@ -4,9 +4,10 @@ import okhttp3.MultipartBody
 import retrofit2.http.Multipart
 import retrofit2.http.POST
 import retrofit2.http.Part
+import viu.wearables.speechtotext.presentation.models.SpeechToText
 
 interface Api {
     @Multipart
     @POST("/")
-    suspend fun subirAudio(@Part file: MultipartBody.Part): Array<String>
+    suspend fun subirAudio(@Part file: MultipartBody.Part): SpeechToText
 }

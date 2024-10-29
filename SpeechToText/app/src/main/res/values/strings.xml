@@ -4,5 +4,8 @@
     <string name="title_activity_result_convert">ResultConvertActivity</string>
     <string name="importar_audio">Importar audio</string>
     <string name="importa_tu_archivo">Importa tu archivo de audio</string>
-    <string name="resultado_audio_procesado">Resultado del audio procesado:\n</string>
+    <string name="resultado_audio_procesado">Resultado del audio procesado</string>
+    <string name="eliminar">Eliminar</string>
+    <string name="editar">Editar historial</string>
+    <string name="historial">Historial</string>
 </resources>
