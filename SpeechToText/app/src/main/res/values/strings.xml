@@ -8,4 +8,14 @@
     <string name="eliminar">Eliminar</string>
     <string name="editar">Editar historial</string>
     <string name="historial">Historial</string>
+    <string name="convertir_audio">Convertir Audio</string>
+    <string name="eliminado">Historial eliminado</string>
+    <string name="agregar_historial">Agregar Historial</string>
+    <string name="nombre_audio">Nombre Audio</string>
+    <string name="transcripcion">Transcripción</string>
+    <string name="fecha">Fecha</string>
+    <string name="hora">Hora</string>
+    <string name="confianza">Confianza</string>
+    <string name="tiempo_procesamiento">Tiempo procesamiento</string>
+    <string name="unidad_procesamiento">Unidad tiempo procesamiento</string>
 </resources>

@@ -1,4 +1,4 @@
-package viu.wearables.speechtotext
+package viu.wearables.speechtotext.presentation
 
 import android.os.Bundle
 import androidx.activity.ComponentActivity
@@ -24,7 +24,7 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.NavHost
 
 
-class MainActivity : ComponentActivity() {
+class HistoryActivity : ComponentActivity() {
     private val db by lazy {
         Room.databaseBuilder(
             applicationContext,
@@ -61,10 +61,10 @@ class MainActivity : ComponentActivity() {
                                 }
                             )) { navBackStackEntry ->
 
-                            val musicId = navBackStackEntry.arguments?.getInt("historyId") ?: -1
+                            val historyId = navBackStackEntry.arguments?.getInt("historyId") ?: -1
 
                             val song = viewModel<AddEditHistoryViewModel>() {
-                                AddEditHistoryViewModel(db.dao,musicId)
+                                AddEditHistoryViewModel(db.dao,historyId)
                             }
                             AddEditHistoryScreen(navController, song)
                         }

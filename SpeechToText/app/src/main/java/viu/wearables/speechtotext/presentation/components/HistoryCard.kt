@@ -21,6 +21,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.TextStyle
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -47,7 +48,7 @@ fun HistoryCard(history: HistoryData, onDeleteClick: (HistoryData) -> Unit, modi
                 Column {
                     Text(
                         history.nombreAudio,
-                        style = TextStyle(fontSize = 24.sp, color = Color.Black),
+                        style = TextStyle(fontSize = 26.sp, color = Color.Black, fontWeight = FontWeight.Bold),
                         maxLines = 1,
                         overflow = TextOverflow.Ellipsis
                     )
@@ -55,7 +56,7 @@ fun HistoryCard(history: HistoryData, onDeleteClick: (HistoryData) -> Unit, modi
             }
             Text(
                 history.transcripcion,
-                style = TextStyle(fontSize = 22.sp, color = Color.Black),
+                style = TextStyle(fontSize = 21.sp, color = Color.Black),
                 maxLines = 10,
                 overflow = TextOverflow.Ellipsis
             )

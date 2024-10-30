@@ -13,26 +13,20 @@ import kotlinx.coroutines.launch
 import viu.wearables.speechtotext.data.HistoryDAO
 import viu.wearables.speechtotext.data.HistoryData
 import viu.wearables.speechtotext.data.toEntity
-import viu.wearables.speechtotext.presentation.components.HistoryEvent
-import viu.wearables.speechtotext.presentation.components.SortByTitle
-import viu.wearables.speechtotext.presentation.components.SortOrder
+import viu.wearables.speechtotext.presentation.HistoryEvent
 
 class ListHistoryViewModel(val dao: HistoryDAO) : ViewModel() {
     private val _histories: MutableState<List<HistoryData>> = mutableStateOf(emptyList())
     var histories: State<List<HistoryData>> = _histories
 
-    private var _sortOrder: MutableState<SortOrder> = mutableStateOf(SortByTitle)
-    var sortOrder: State<SortOrder> = _sortOrder
-
     //Job para realizar la interacción con la BBDD con corrutinas
     var job: Job? = null
 
     init {
-        loadHistory(sortOrder.value)
-        //_histories.value= getHistories(sortOrder.value)
+        loadHistory()
     }
 
-    private  fun loadHistory(sortOrder: SortOrder) {
+    private  fun loadHistory() {
         job?.cancel()
 
         job = dao.getHistories().onEach { histories->
@@ -46,9 +40,7 @@ class ListHistoryViewModel(val dao: HistoryDAO) : ViewModel() {
     fun onEvent(event: HistoryEvent) {
         when(event) {
             is HistoryEvent.Delete -> {deleteHistory(event.historyData)}
-            is HistoryEvent.Order -> {
-                _sortOrder.value = event.order
-            }
+
         }
     }
 

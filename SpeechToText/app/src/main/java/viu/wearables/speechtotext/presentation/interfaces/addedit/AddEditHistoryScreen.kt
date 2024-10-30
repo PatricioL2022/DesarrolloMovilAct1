@@ -28,6 +28,7 @@ import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
 import viu.wearables.speechtotext.R
 import viu.wearables.speechtotext.presentation.AddEditHistoryEvent
+import viu.wearables.speechtotext.presentation.components.BasicTopBar
 
 @Composable
 fun AddEditHistoryScreen (
@@ -36,6 +37,7 @@ fun AddEditHistoryScreen (
 )
 {
     Scaffold(
+        topBar = { BasicTopBar(stringResource(R.string.editar)) },
         floatingActionButton = {
             FloatingActionButton(
                 onClick = {
@@ -54,39 +56,33 @@ fun AddEditHistoryScreen (
                 .fillMaxSize()
                 .padding(contentPadding)
         ) {
-            Text(
-                style = MaterialTheme.typography.headlineLarge,
-                text = stringResource(id = R.string.editar),
-                modifier = Modifier
-                    .align(Alignment.CenterHorizontally)
-                    .padding(16.dp)
-            )
+
             OutlinedTextField(
                 value = history.nombreAudio,
-                label = { Text("Nombre Audio") },
+                label = { Text(stringResource(id = R.string.nombre_audio)) },
                 onValueChange = {
                     viewModel.onEvent(AddEditHistoryEvent.EnteredNombreAudio(it))
                 },
                 singleLine = true,
-                textStyle = MaterialTheme.typography.labelSmall.copy(color = Color.Blue),
+                textStyle = MaterialTheme.typography.labelSmall.copy(color = Color.Black),
                 modifier = Modifier.fillMaxWidth(),
 
             )
             Spacer(modifier = Modifier.height(16.dp))
             OutlinedTextField(
                 value = history.transcripcion,
-                label = { Text("Transcripción") },
+                label = { Text(stringResource(id = R.string.transcripcion)) },
                 onValueChange = {
                     viewModel.onEvent(AddEditHistoryEvent.EnteredTranscripcion(it))
                 },
                 singleLine = true,
-                textStyle = MaterialTheme.typography.labelSmall.copy(color = Color.Green),
+                textStyle = MaterialTheme.typography.labelSmall.copy(color = Color.Black),
                 modifier = Modifier.fillMaxWidth()
             )
             Spacer(modifier = Modifier.height(16.dp))
             OutlinedTextField(
                 value = history.fecha,
-                label = { Text("Fecha") },
+                label = { Text(stringResource(id = R.string.fecha)) },
                 onValueChange = {
                     viewModel.onEvent(AddEditHistoryEvent.EnteredFecha(it))
                 },
@@ -97,7 +93,7 @@ fun AddEditHistoryScreen (
             Spacer(modifier = Modifier.height(16.dp))
             OutlinedTextField(
                 value = history.hora,
-                label = { Text("Hora") },
+                label = { Text(stringResource(id = R.string.hora)) },
                 onValueChange = {
                     viewModel.onEvent(AddEditHistoryEvent.EnteredHora(it))
                 },
@@ -108,7 +104,7 @@ fun AddEditHistoryScreen (
             Spacer(modifier = Modifier.height(16.dp))
             OutlinedTextField(
                 value = history.confianza.toString(),
-                label = { Text("Confianza") },
+                label = { Text(stringResource(id = R.string.confianza)) },
                 onValueChange = {
                     viewModel.onEvent(AddEditHistoryEvent.EnteredConfianza(it.toFloat()))
                 },
@@ -119,7 +115,7 @@ fun AddEditHistoryScreen (
             Spacer(modifier = Modifier.height(16.dp))
             OutlinedTextField(
                 value = history.tiempoProcesamiento.toString(),
-                label = { Text("Tiempo procesamiento") },
+                label = { Text(stringResource(id = R.string.tiempo_procesamiento)) },
                 onValueChange = {
                     viewModel.onEvent(AddEditHistoryEvent.EnteredTiempoProcesamiento(it.toFloat()))
                 },
@@ -130,7 +126,7 @@ fun AddEditHistoryScreen (
             Spacer(modifier = Modifier.height(16.dp))
             OutlinedTextField(
                 value = history.unidadMedidaTiempoProcesamiento,
-                label = { Text("Unidad tiempo procesamiento") },
+                label = { Text(stringResource(id = R.string.unidad_procesamiento)) },
                 onValueChange = {
                     viewModel.onEvent(AddEditHistoryEvent.EnteredUnidadProcesamiento(it))
                 },

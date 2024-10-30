@@ -34,12 +34,6 @@ class ResultConvertActivity : ComponentActivity() {
             SpeechToTextTheme {
                 val resultadoConvertirAudioTexto = intent.getStringExtra("resultadoConvertirAudioTexto")
                 CustomScaffold(resultadoConvertirAudioTexto.toString())
-                /**Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
-                    TextoResultado(
-                        texto = stringResource(R.string.resultado_audio_procesado) + resultadoConvertirAudioTexto.toString(),
-                        modifier = Modifier.padding(innerPadding)
-                    )
-                }*/
             }
         }
     }
