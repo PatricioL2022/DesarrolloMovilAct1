@@ -4,10 +4,13 @@ import androidx.compose.runtime.Composable
 import androidx.compose.material3.*
 import androidx.compose.ui.graphics.Color
 
+/**
+ * Componente tipo TopAppBar que muestra información relacionadas con la pantalla actual
+ * como el título
+ */
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun BasicTopBar(titulo: String) {
-    val materialBlue700= Color(red=2, green =117, blue= 216)
     TopAppBar(
         // Título de la barra superior
         title = { Text(text = titulo) },

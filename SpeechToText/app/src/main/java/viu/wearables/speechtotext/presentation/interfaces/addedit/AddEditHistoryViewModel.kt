@@ -11,6 +11,10 @@ import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.launch
 import viu.wearables.speechtotext.data.toEntity
 
+/**
+ * Clase para enlazar la vista del formulario con el item modelo
+ * historial
+ */
 class AddEditHistoryViewModel (val dao: HistoryDAO, historyId: Int = -1) : ViewModel() {
     private val _history = mutableStateOf(HistoryData())
     val history: State<HistoryData> = _history

@@ -23,6 +23,10 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 
+/**
+ * Componente tipo Boton personalizado para lanzar
+ * una acción definida
+ */
 @Composable
 fun BasicButton(texto: String,onClick: () -> Unit) {
     Column(
@@ -32,8 +36,6 @@ fun BasicButton(texto: String,onClick: () -> Unit) {
         verticalArrangement = Arrangement.Center,
         horizontalAlignment = Alignment.CenterHorizontally,
     ) {
-        val context = LocalContext.current
-
         Button(
             onClick = onClick,
             modifier = Modifier.padding(16.dp),

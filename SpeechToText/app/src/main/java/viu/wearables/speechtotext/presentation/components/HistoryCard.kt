@@ -28,6 +28,10 @@ import androidx.compose.ui.unit.sp
 import viu.wearables.speechtotext.R
 import viu.wearables.speechtotext.data.HistoryData
 
+/**
+ * Componente tipo Card que representa un item
+ * de la lista en la pantalla historial
+ */
 @Composable
 fun HistoryCard(history: HistoryData, onDeleteClick: (HistoryData) -> Unit, modifier: Modifier) {
 

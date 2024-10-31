@@ -30,6 +30,10 @@ import viu.wearables.speechtotext.R
 import viu.wearables.speechtotext.presentation.AddEditHistoryEvent
 import viu.wearables.speechtotext.presentation.components.BasicTopBar
 
+/**
+ * Pantalla para mostrar un formulario con todos los campos de un item
+ * historial de audios procesados
+ */
 @Composable
 fun AddEditHistoryScreen (
     navController: NavHostController,

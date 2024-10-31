@@ -30,6 +30,10 @@ import viu.wearables.speechtotext.presentation.HistoryEvent
 import viu.wearables.speechtotext.presentation.components.BasicTopBar
 import viu.wearables.speechtotext.presentation.components.HistoryCard
 
+/**
+ * Esta pantalla permite mostrar un listado del historial de audios enviados a
+ * procesar al servidor
+ */
 @Composable
 fun ListHistoryScreen (navController: NavController, historiesViewModel: ListHistoryViewModel) {
     val snackbarHostState = remember {SnackbarHostState()}

@@ -15,6 +15,10 @@ import viu.wearables.speechtotext.data.HistoryData
 import viu.wearables.speechtotext.data.toEntity
 import viu.wearables.speechtotext.presentation.HistoryEvent
 
+/**
+ * Clase para enlazar la vista con el modelo del listado
+ * de audios procesados
+ */
 class ListHistoryViewModel(val dao: HistoryDAO) : ViewModel() {
     private val _histories: MutableState<List<HistoryData>> = mutableStateOf(emptyList())
     var histories: State<List<HistoryData>> = _histories

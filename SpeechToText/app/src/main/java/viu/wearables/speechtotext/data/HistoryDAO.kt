@@ -7,6 +7,10 @@ import androidx.room.Upsert
 import kotlinx.coroutines.flow.Flow
 import viu.wearables.speechtotext.presentation.models.History
 
+/**
+ * Interfaz donde se definen las operaciones CRUD(Create,Read,Update,Delete)
+ * de un objeto tipo historial
+ */
 @Dao
 interface HistoryDAO {
     @Query("SELECT * FROM History")

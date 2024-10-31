@@ -3,6 +3,10 @@ package viu.wearables.speechtotext.data
 import viu.wearables.speechtotext.presentation.models.History
 import kotlin.random.Random
 
+/**
+ * Clase que nos permite inicializar un objeto
+ * tipo historial asignandole valores por defecto
+ */
 data class HistoryData (
     val id: Int = Random.nextInt(),
     val nombreAudio: String = "",

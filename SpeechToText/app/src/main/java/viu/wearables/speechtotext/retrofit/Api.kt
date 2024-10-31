@@ -6,6 +6,11 @@ import retrofit2.http.POST
 import retrofit2.http.Part
 import viu.wearables.speechtotext.presentation.models.SpeechToText
 
+/**
+ * Interfaz donde se definen las interacciones con el servidor web
+ * mediante api rest especificando la dirección url y los
+ * parametros de entrada y salida
+ */
 interface Api {
     @Multipart
     @POST("/")

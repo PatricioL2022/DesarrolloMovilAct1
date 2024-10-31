@@ -23,6 +23,10 @@ import viu.wearables.speechtotext.presentation.interfaces.addedit.AddEditHistory
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.NavHost
 
+/**
+ * Pantalla historial que enlaza las pantalla de listado
+ * y formulario de historial
+ */
 
 class HistoryActivity : ComponentActivity() {
     private val db by lazy {

@@ -2,6 +2,11 @@ package viu.wearables.speechtotext.retrofit
 
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
+
+/**
+ * Inicializacion de la libreria retrofit para establecer conexion
+ * con el servidor
+ */
 object InitializeRetrofit {
     private const val BASE_URL = "http://192.168.100.156:80"
     val todoApi: Api by lazy {
